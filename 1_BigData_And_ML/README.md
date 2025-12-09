@@ -1,10 +1,3 @@
-
-
----
-
-# 📄 **1_BigData_And_ML/README.md**
-
-```markdown
 # 🧠 Big Data & Machine Learning Projects
 
 This folder contains advanced projects demonstrating:
