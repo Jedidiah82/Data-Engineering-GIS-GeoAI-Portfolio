@@ -1,39 +1,55 @@
 import geopandas as gpd
+import pandas as pd
 import os
 
-CLEANED_BUILDINGS = "data_clean/buildings_cleaned.gpkg"
-HAZARD_FILE = "hazards/flood_fema_nfhl.gpkg"   # You can swap this out
-OUTPUT_PATH = "data_clean/buildings_exposure.gpkg"
-
+BUILDINGS_PATH = "data_clean/buildings_cleaned.gpkg"
+FLOOD_PATH = "hazards/flood_fema_nfhl.gpkg"
+OUT_GPKG = "hazards/buildings_in_floodzones.gpkg"
+SUMMARY_CSV = "hazards/flood_exposure_summary.csv"
 
 def main():
-    # Check inputs
-    if not os.path.exists(CLEANED_BUILDINGS):
-        raise FileNotFoundError(f"Missing cleaned footprints: {CLEANED_BUILDINGS}")
+    print("[*] Loading cleaned building footprints...")
+    buildings = gpd.read_file(BUILDINGS_PATH)
 
-    if not os.path.exists(HAZARD_FILE):
-        raise FileNotFoundError(f"Missing hazard dataset: {HAZARD_FILE}")
+    print("[*] Loading FEMA flood hazard layer...")
+    flood = gpd.read_file(FLOOD_PATH)
 
-    print("[*] Loading cleaned buildings...")
-    buildings = gpd.read_file(CLEANED_BUILDINGS)
+    # FEMA zones to include
+    valid_zones = ["A", "AE", "AO", "AH", "VE", "V"]
+    if "FLD_ZONE" in flood.columns:
+        flood = flood[flood["FLD_ZONE"].isin(valid_zones)]
+        print(f"[INFO] Using FEMA zones: {valid_zones}")
 
-    print("[*] Loading hazard layer...")
-    hazard = gpd.read_file(HAZARD_FILE)
-
-    print("[INFO] Reprojecting hazard layer to match buildings CRS...")
-    hazard = hazard.to_crs(buildings.crs)
+    print("[*] Reprojecting both layers to a metric CRS (EPSG:3857)...")
+    buildings = buildings.to_crs(3857)
+    flood = flood.to_crs(3857)
 
     print("[*] Performing spatial intersection...")
-    exposure = gpd.overlay(buildings, hazard, how="intersection")
+    flooded = gpd.overlay(buildings, flood, how="intersection")
 
-    print("[*] Saving results to:", OUTPUT_PATH)
-    exposure.to_file(OUTPUT_PATH, driver="GPKG")
+    print("[*] Saving intersected buildings...")
+    os.makedirs("hazards", exist_ok=True)
+    flooded.to_file(OUT_GPKG, driver="GPKG")
 
-    # Summary
-    print("\n[SUCCESS] Hazard exposure intersection complete.")
-    print(f"- Buildings with exposure: {len(exposure)}")
-    print(f"- Output saved to: {OUTPUT_PATH}")
+    print("[*] Generating summary statistics...")
+    total_buildings = len(buildings)
+    flooded_buildings = len(flooded)
 
+    pct_exposed = round((flooded_buildings / total_buildings) * 100, 2)
+
+    summary = pd.DataFrame({
+        "total_buildings": [total_buildings],
+        "flood_exposed": [flooded_buildings],
+        "percent_exposed": [pct_exposed]
+    })
+
+    summary.to_csv(SUMMARY_CSV, index=False)
+
+    print("[SUCCESS] Analysis complete.")
+    print(f" - Flooded buildings: {flooded_buildings}")
+    print(f" - Percent exposed: {pct_exposed}%")
+    print(f" - Output saved to: {OUT_GPKG}")
+    print(f" - Summary saved to: {SUMMARY_CSV}")
 
 if __name__ == "__main__":
     main()
