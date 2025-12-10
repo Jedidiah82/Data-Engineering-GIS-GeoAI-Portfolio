@@ -1,5 +1,5 @@
 # ☁️ Cloud Computing & Security Engineering
-***_Building skills in Cloud Architecture • Security Operations • Threat Detection • IAM_**
+**_Building skills in Cloud Architecture • Security Operations • Threat Detection • IAM_**
 
 ---
 
