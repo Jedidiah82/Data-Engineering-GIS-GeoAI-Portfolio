@@ -16,4 +16,6 @@ Mapping and analysis of stakeholders supporting animal–human–environment hea
 ## Outputs
 - Stakeholder maps  
 - Coordination diagrams  
-# Placeholder - content coming soon
+
+## Maps Included
+![OneHealth RCCE Stakeholders](OneHealth_RCCE_Stakeholders.png)
