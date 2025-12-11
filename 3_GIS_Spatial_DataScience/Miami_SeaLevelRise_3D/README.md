@@ -27,4 +27,7 @@
 ## Extensions
 - Add population exposure  
 - Integrate storm surge projections  
-# Placeholder - content coming soon
+
+## Maps Included
+![Miami Sea Level Rise 3D](Miami_SeaLevelRise_3D.png)
+
