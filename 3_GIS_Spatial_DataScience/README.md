@@ -41,15 +41,17 @@ Each subfolder contains:
 
 ---
 
-## 📄 GIS Portfolio (Full PDF)
-A complete collection of professional GIS maps, spatial analyses, and cartographic designs:
+## 📘 Full GIS Portfolio (PDF)
+A curated collection of high-impact GIS maps, spatial analysis projects, and cartographic products.
 
-👉 [Download Full GIS Portfolio (PDF)](../GIS_Portfolio/Godwin_GIS_Portfolio.pdf)
+👉 [Download GIS Portfolio (PDF)](GIS_Portfolio/GIS_Portfolio.pdf)
 
-## 🖼 Featured Figures
-High-resolution maps are available here:
-
-👉 [GIS Portfolio Figures](../GIS_Portfolio/Figures/)
+This portfolio includes:
+- Public health surveillance maps
+- Climate & environmental models
+- Transportation & road safety GIS
+- Infrastructure and planning analysis
+- Esri Virtual Map Gallery featured work
 
 ---
 
