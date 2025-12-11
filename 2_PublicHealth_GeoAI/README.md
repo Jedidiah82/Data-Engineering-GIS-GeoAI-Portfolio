@@ -40,17 +40,5 @@ All subfolders contain:
 
 ---
 
-## 📄 GIS Portfolio (Full PDF)
-A complete collection of professional GIS maps, spatial analyses, and cartographic designs:
-
-👉 [Download Full GIS Portfolio (PDF)](../GIS_Portfolio/Godwin_GIS_Portfolio.pdf)
-
-## 🖼 Featured Figures
-High-resolution maps are available here:
-
-👉 [GIS Portfolio Figures](../GIS_Portfolio/Figures/)
-
----
-
 © 2025 — **Godwin Etim Akpan**  
 Public Health Informatics • GeoAI • Spatial Epidemiology
