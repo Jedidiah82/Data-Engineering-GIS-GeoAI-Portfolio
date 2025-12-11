@@ -10,4 +10,8 @@ District-level measles incidence patterns analyzed through:
 ## Outputs
 - District time-series plots  
 - Seasonal pattern analysis  
+
+## Maps Included
+![Measles District Timeseries](Measles_District_Timeseries.png)
+
 # Placeholder - content coming soon
