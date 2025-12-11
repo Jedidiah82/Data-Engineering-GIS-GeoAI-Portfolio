@@ -11,4 +11,8 @@ Uses:
 ## Outputs
 - Border risk maps  
 - Priority surveillance zones  
+
+## Maps Included
+![Cross-Border Ebola Marburg Risk](CrossBorder_Ebola_Marburg_Risk.png)
+
 # Placeholder - content coming soon
